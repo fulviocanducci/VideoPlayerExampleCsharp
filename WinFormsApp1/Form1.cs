@@ -20,12 +20,20 @@ namespace WinFormsApp1
                 BackColor = Color.Black,
                 Name = "Video",
             };
-            GrpBoxVideo.Controls.Add(VideoView);            
+            GrpBoxVideo.Controls.Add(VideoView);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             string videoPath = @"C:\Temp\Videos\1.mp4";
+            using var media = new Media(LibVLC, videoPath, FromType.FromPath);            
+            MediaPlayer.Play(media);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MediaPlayer.Stop();
+            string videoPath = @"C:\Temp\Videos\2.mp4";
             using var media = new Media(LibVLC, videoPath, FromType.FromPath);
             MediaPlayer.Play(media);
         }
